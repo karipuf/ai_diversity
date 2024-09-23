@@ -122,6 +122,12 @@ model_map={"llama_small":"llama-3.1-8b-instruct",
 # OpenAlex API calls
 ######################
 
+def decode_abstract(inverted_index):
+    if not inverted_index:
+        return None
+    words = sorted(inverted_index.items(), key=lambda x: min(x[1]))
+    return ' '.join(word for word, _ in words)
+
 def get_source_ids(the_name,max_reqs=20):
 
     base_url = "https://api.openalex.org/sources"

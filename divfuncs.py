@@ -13,7 +13,7 @@ local_client=OpenAI(base_url='http://localhost:11434/v1/',api_key='12345')
 groq_client=OpenAI(base_url='https://api.groq.com/openai/v1/',api_key=os.environ['GROQKEY'])
 pplx_client=OpenAI(base_url='https://api.perplexity.ai',api_key=os.environ['PPLXKEY'])
 gpt4o_client=OpenAI(base_url=os.environ['GPTPROXYURL'],api_key=os.environ['GPTPROXYKEY'],
-                   http_client=httpx.Client(verify='/Users/wwoon/projects/hackathon/text-search-hackathon-2024/certificates/GAP-proxy-certificate.crt'))
+                   http_client=httpx.Client(verify=os.environ['HOME']+'/projects/hackathon/text-search-hackathon-2024/certificates/GAP-proxy-certificate.crt'))
 
 def topic_extraction_msgs(passage):
 

@@ -122,7 +122,7 @@ model_map={"llama_small":"llama-3.1-8b-instruct",
 # OpenAlex API calls
 ######################
 
-def get_sources(the_name,max_reqs=20):
+def get_source_ids(the_name,max_reqs=20):
 
     base_url = "https://api.openalex.org/sources"
     params = {
@@ -153,12 +153,14 @@ def get_sources(the_name,max_reqs=20):
     return all_sources
 
 
-def get_aaai_publications(year,max_reqs=20):
+def get_publications_by_source(year,
+                            source_id='S4210191458', # AAAI
+                            max_reqs=20):
 
     base_url = "https://api.openalex.org/works"
 
     params = {
-             "filter": f"primary_location.source.id:S4210191458,publication_year:{year}",
+             "filter": f"primary_location.source.id:{source_id},publication_year:{year}",
              "per-page": 200,
              "cursor": '*'
          }
@@ -188,7 +190,7 @@ def get_aaai_publications(year,max_reqs=20):
 def test2010():
 
     # Retrieve the publications
-    aaai_2010_publications = get_aaai_publications(2010)
+    aaai_2010_publications = get_publications_by_source(2010)
 
     # Print the number of publications retrieved
     print(f"Total publications retrieved: {len(aaai_2010_publications)}")
